@@ -13,10 +13,16 @@ body {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 2.5em;
     letter-spacing: 1px;
     font-weight: normal;
     color: #fff;
+}
+
+p.tweet {
+    color: #ffffff;
+    font-size: 1.5em;
+    padding: 10px 30px;
 }
 
 .starter-template {
@@ -34,6 +40,20 @@ h1 {
     background-color: #91BED4;
 }
 
+.districtcard {
+    padding: 7px 7px;
+    background-color: #91BED4;
+}
+
+.fact {
+    padding: 40px 40px;
+    background-color: #ffffff;
+    border: 1px;
+    border-color: #666666;
+    z-index: 5;
+}
+
+
 .swingcard {
     padding: 20px 15px;
     background-color: #EF8B6B;
@@ -49,6 +69,13 @@ h1 {
     background-color: #45B29D;
 }
 
+a.panels {
+    text-decoration: none;
+}
+
+.btn-primary {
+    padding: 20px 40px;
+}
 
 /* ==========================================================================
    Helper classes

@@ -35,24 +35,22 @@
         //echo "Connected successfully";
        //  echo "<h6>"."Vote: Connected"."</h6>";
 
-        $tweets = $database->select("tweets", [
+        $questions = $database->select("questions", [
+            "q_id",
+            "question",
+            "district_id"]);
+
+        $answers = $database->select("answers", [
+            "a_id",
+            "answer",
+            "q_id",
+            "correct"]);
+
+         $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
             "tweet_text",
-            "fact_text"]
-        );
-
-        $vote_the_game_sql = "SELECT * FROM tweets ORDER BY RAND() LIMIT 1;";
-        $query = mysql_query($tweet_text_sql);
-
-        $row = mysql_fetch_assoc($query);
-
-        $tweet_id = $row['tweet_id'];
-        $tweet_handle = $row['tweet_handle'];
-        $tweet_text = $row['tweet_text'];
-        $fact_text = $row['fact_text'];
-
-
+            "fact_text"]);
          
     ?>
     <body>
@@ -65,7 +63,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="index.html">Vote the Game</a>
+              <a class="navbar-brand" href="#">Vote the Game</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
@@ -82,10 +80,12 @@
                 <div class="panel panel-default">
                     <div class="panel-body rcard">
 
-                        <h1>Random Card</h1>
+                        <h1>Miami Beach</h1>
                         <?php
-                            echo "<h3>".$row["tweet_handle"]. "</h3>";
-                            echo "<p class='tweet'>".$row["tweet_text"] . "</p>";
+                            foreach($questions as $question) {
+                                echo "<h3>".$question["question"] . "</h3>";
+                                 echo "<p>". "Answers for this question will go here" . "</p>";
+                            }
                         ?>
                     </div>
 
@@ -93,7 +93,7 @@
 
                 <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button>
 
-                <div id="factContainer" class="panel-body fact" style="display:none;">
+                 <div id="factContainer" class="panel-body fact" style="display:none;">
                     <div>
                         <?php
                             foreach($tweets as $tweet) {
@@ -105,7 +105,7 @@
                     <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Learn More</button>
                     <a href="index.html"> <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Continue Playing</button></a> 
 
-                </div>
+                </div> 
                
           </div>
         </div>
