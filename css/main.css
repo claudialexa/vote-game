@@ -13,7 +13,7 @@ body {
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2.8em;
     letter-spacing: 1px;
     font-weight: normal;
     color: #fff;
@@ -30,11 +30,7 @@ p.tweet {
   text-align: center;
 }
 
-/*.navbar-inverse {
-    background: #ECE9E6 !important;
-    border-color: #E0DEDB;
-}
-*/
+
 .rcard {
     padding: 20px 15px;
     background-color: #91BED4;
@@ -46,13 +42,12 @@ p.tweet {
 }
 
 .fact {
-    padding: 40px 40px;
-    background-color: #ffffff;
+    padding: 30px 30px;
+    background-color: #cccccc;
     border: 1px;
     border-color: #666666;
     z-index: 5;
 }
-
 
 .swingcard {
     padding: 20px 15px;
@@ -77,6 +72,7 @@ a.panels {
     padding: 20px 40px;
 }
 
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -95,6 +91,15 @@ a.panels {
     *zoom: 1;
 }
 
+button {
+    background-color: #ffffff;
+    margin-right: 10px;
+    border: 1px;
+    border-color: #666666;
+}
+
+button.correct.active { background-color: green; }
+button.wrong.active { background-color: red; }
 /* ==========================================================================
    Media Queries
    ========================================================================== */

@@ -76,29 +76,13 @@
 
                         <h1>Magic Card</h1>
                         <?php
-                            foreach($magic as $magic) {
-                                echo "<h3>".$magic["magic_text"] . "</h3>";
-                            }
+                            echo $magic[rand(0, (sizeof($magic) - 1) )]["magic_text"];
                         ?>
                     </div>
 
                 </div>
 
-                <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button>
-
-                <div id="factContainer" class="panel-body fact" style="display:none;">
-                    <div>
-                        <?php
-                            foreach($tweets as $tweet) {
-                                echo "<h4>". "Did you know?" . " " .$tweet["fact_text"] . "</h4>";
-                            }
-                        ?>
-                    </div>
-
-                    <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Learn More</button>
-                    <a href="index.html"> <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Continue Playing</button></a> 
-
-                </div>
+                <a href="index.html"> <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button></a>
                
           </div>
         </div>

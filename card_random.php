@@ -41,18 +41,6 @@
             "tweet_text",
             "fact_text"]
         );
-
-        $vote_the_game_sql = "SELECT * FROM tweets ORDER BY RAND() LIMIT 1;";
-        $query = mysql_query($tweet_text_sql);
-
-        $row = mysql_fetch_assoc($query);
-
-        $tweet_id = $row['tweet_id'];
-        $tweet_handle = $row['tweet_handle'];
-        $tweet_text = $row['tweet_text'];
-        $fact_text = $row['fact_text'];
-
-
          
     ?>
     <body>
@@ -84,8 +72,10 @@
 
                         <h1>Random Card</h1>
                         <?php
-                            echo "<h3>".$row["tweet_handle"]. "</h3>";
-                            echo "<p class='tweet'>".$row["tweet_text"] . "</p>";
+
+                        $selectedTweet = rand(0, (sizeof($tweets) - 1) );
+                            echo  "<h3>" . $tweets[$selectedTweet]["tweet_handle"] . "</h3>";
+                             echo  "<h4>" . $tweets[$selectedTweet]["tweet_text"] . "</h4>";
                         ?>
                     </div>
 
@@ -93,12 +83,12 @@
 
                 <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button>
 
-                <div id="factContainer" class="panel-body fact" style="display:none;">
-                    <div>
+                <div id="factContainer" class="panel-body" style="display:none;">
+
+                    <div id="factContainer" class="panel panel-default fact">
                         <?php
-                            foreach($tweets as $tweet) {
-                                echo "<h4>". "Did you know?" . " " .$tweet["fact_text"] . "</h4>";
-                            }
+                            echo "<h3>" . "Did you Know?" . "</h3>";
+                            echo $tweets[$selectedTweet]["fact_text"];
                         ?>
                     </div>
 

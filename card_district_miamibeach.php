@@ -39,13 +39,10 @@
             "q_id",
             "question",
             "district_id"]);
+        $selectedQ = rand(0, (sizeof($questions) - 1) );
+        
 
-        $answers = $database->select("answers", [
-            "a_id",
-            "answer",
-            "q_id",
-            "correct"]);
-
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 5]);
          $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
@@ -63,7 +60,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Vote the Game</a>
+              <a class="navbar-brand" href="index.html">Vote the Game</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
@@ -82,23 +79,29 @@
 
                         <h1>Miami Beach</h1>
                         <?php
-                            foreach($questions as $question) {
-                                echo "<h3>".$question["question"] . "</h3>";
-                                 echo "<p>". "Answers for this question will go here" . "</p>";
-                            }
+                            echo $questions[rand(0, (sizeof($questions) - 1) )]["question"];
                         ?>
                     </div>
+                    <div class="panel-body">
+                    <?php
+                        foreach($answers as $answer) {
+                            if($answer["correct"] == 1 ) {
+                                $class = "correct";
+                            } else { $class = "wrong";}
 
+                        echo "<button type=\"$class\" class=\" $class btn btn \">" . $answer["answer"] . "</button>";
+                        }
+                    ?>
+                    </div>
                 </div>
 
                 <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button>
 
-                 <div id="factContainer" class="panel-body fact" style="display:none;">
-                    <div>
+                 <div id="factContainer" class="panel-body" style="display:none;">
+
+                     <div id="factContainer" class="panel panel-default fact">
                         <?php
-                            foreach($tweets as $tweet) {
-                                echo "<h4>". "Did you know?" . " " .$tweet["fact_text"] . "</h4>";
-                            }
+                            echo $tweets[rand(0, (sizeof($tweets) - 1) )]["fact_text"];
                         ?>
                     </div>
 
@@ -114,5 +117,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <script src="js/main.js"></script>
+        <script type="text/javascript">
+        $('button.correct').click(function(){
+            $('button.correct').addClass('active');
+        });
+        $('button.wrong').click(function(){
+            $('button.wrong').addClass('active');
+        });
+        </script>
     </body>
 </html>
