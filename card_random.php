@@ -44,7 +44,7 @@
          
     ?>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -57,12 +57,14 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="how-to-play.html">How to Play</a></li>
+                <li><a href="about.html">About the Game</a></li>
+                 <li><a href="https://twitter.com/Vote_MIAMI" target="_blank">Twitter</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
+
 
         <div class="container">
             <div class="starter-template">

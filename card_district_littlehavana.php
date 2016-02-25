@@ -35,12 +35,15 @@
         //echo "Connected successfully";
        //  echo "<h6>"."Vote: Connected"."</h6>";
 
-        $magic = $database->select("magic", [
-            "magic_id",
-            "magic_text",
-            "magic_result"]);
+        $questions = $database->select("questions", [
+            "q_id",
+            "question",
+            "district_id"]);
+        $selectedQ = rand(0, (sizeof($questions) - 1) );
+        
 
-        $tweets = $database->select("tweets", [
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 1]);
+         $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
             "tweet_text",
@@ -76,15 +79,39 @@
                 <div class="panel panel-default">
                     <div class="panel-body rcard">
 
-                        <h1>Magic Card</h1>
+                        <h1>Little Havana</h1>
+                        <p>Get this question correct and you get to overturn this district!</p>
                         <?php
-                            echo $magic[rand(0, (sizeof($magic) - 1) )]["magic_text"];
+                            echo "<h4>" . $questions[rand(0, (sizeof($questions) - 1) )]["question"] . "</h4>";
+                        ?>
+                    </div>
+                    <div class="panel-body">
+                    <?php
+                        foreach($answers as $answer) {
+                            if($answer["correct"] == 1 ) {
+                                $class = "correct";
+                            } else { $class = "wrong";}
+
+                        echo "<button type=\"$class\" class=\" $class btn btn \">" . $answer["answer"] . "</button>";
+                        }
+                    ?>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button>
+
+                 <div id="factContainer" class="panel-body" style="display:none;">
+
+                     <div id="factContainer" class="panel panel-default fact">
+                        <?php
+                            echo $tweets[rand(0, (sizeof($tweets) - 1) )]["fact_text"];
                         ?>
                     </div>
 
-                </div>
+                    <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Learn More</button>
+                    <a href="index.html"> <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Continue Playing</button></a> 
 
-                <a href="index.html"> <button class="btn btn-primary" name="fact" value="Show Div" onclick="showDiv()">Done</button></a>
+                </div> 
                
           </div>
         </div>
@@ -93,5 +120,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
         <script src="js/main.js"></script>
+        <script type="text/javascript">
+        $('button.correct').click(function(){
+            $('button.correct').addClass('active');
+        });
+        $('button.wrong').click(function(){
+            $('button.wrong').addClass('active');
+        });
+        </script>
     </body>
 </html>

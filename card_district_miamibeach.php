@@ -14,7 +14,6 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <!-- Font -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600|Slabo+27px' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/main.css">
 
     </head>
@@ -40,10 +39,10 @@
             "question",
             "district_id"]);
         $selectedQ = rand(0, (sizeof($questions) - 1) );
-        
 
-        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 5]);
-         $tweets = $database->select("tweets", [
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 1]);
+
+        $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
             "tweet_text",
@@ -51,7 +50,7 @@
          
     ?>
     <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -64,12 +63,14 @@
             </div>
             <div id="navbar" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="how-to-play.html">How to Play</a></li>
+                <li><a href="about.html">About the Game</a></li>
+                 <li><a href="https://twitter.com/Vote_MIAMI" target="_blank">Twitter</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
         </nav>
+
 
         <div class="container">
             <div class="starter-template">
@@ -78,8 +79,9 @@
                     <div class="panel-body rcard">
 
                         <h1>Miami Beach</h1>
+                        <p>Get this question correct and you get to overturn this district!</p>
                         <?php
-                            echo $questions[rand(0, (sizeof($questions) - 1) )]["question"];
+                            echo "<h4>" . $questions[rand(0, (sizeof($questions) - 1) )]["question"] . "</h4>";
                         ?>
                     </div>
                     <div class="panel-body">
