@@ -42,7 +42,8 @@
         $selectedQ = rand(0, (sizeof($questions) - 1) );
         
 
-        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 5]);
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => $questions[$selectedQ]["q_id"]]);
+
          $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
@@ -82,7 +83,7 @@
                         <h1>Swing a Vote</h1>
                         <p>Get this question correct and you get to swing a vote!</p>
                         <?php
-                            echo  "<h3>". $questions[rand(0, (sizeof($questions) - 1) )]["question"] . "</h3>";
+                            echo "<h4>" . $questions[$selectedQ]["question"] . "</h4>";
                         ?>
                     </div>
                     <div class="panel-body">

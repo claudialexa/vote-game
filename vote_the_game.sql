@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Feb 24, 2016 at 11:17 AM
+-- Generation Time: Feb 26, 2016 at 03:32 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -22,10 +22,36 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `answers` (
   `a_id` int(255) NOT NULL,
+  `q_id` int(11) NOT NULL,
   `answer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `q_id` int(255) NOT NULL,
   `correct` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `answers`
+--
+
+INSERT INTO `answers` (`a_id`, `q_id`, `answer`, `correct`) VALUES
+(1, 1, 'Florida Bay', 0),
+(2, 1, 'Biscayne Bay', 1),
+(3, 1, 'Palm Bay', 0),
+(4, 1, 'Miami Bay', 0),
+(5, 4, 'Little Haiti', 1),
+(6, 4, 'Midtown Miami', 0),
+(7, 4, 'Overtown', 0),
+(8, 4, 'Coconut Grove', 0),
+(9, 2, 'John F. Kennedy', 0),
+(10, 2, 'Ronald Reagan', 1),
+(11, 2, 'Bill Clinton', 0),
+(12, 2, 'Richard Nixon', 0),
+(13, 3, 'The Goombay Festival', 0),
+(14, 3, 'King Mango Strut', 0),
+(15, 3, 'Miami Grand Prix', 1),
+(16, 3, 'The Miami Festival', 0),
+(17, 5, 'Ken Russel', 1),
+(18, 5, 'Mario Dominguez', 0),
+(19, 5, 'Charlie Crist', 0),
+(20, 5, 'Francis Suarez', 0);
 
 -- --------------------------------------------------------
 
@@ -36,7 +62,7 @@ CREATE TABLE `answers` (
 CREATE TABLE `districts` (
 `district_id` int(11) NOT NULL,
   `district` text COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `districts`
@@ -47,7 +73,9 @@ INSERT INTO `districts` (`district_id`, `district`) VALUES
 (2, 'Little Haiti'),
 (3, 'Coconut Grove'),
 (4, 'Hialeah'),
-(5, 'Little Havana');
+(5, 'Little Havana'),
+(6, 'Downtown'),
+(7, 'Doral');
 
 -- --------------------------------------------------------
 
@@ -70,15 +98,16 @@ CREATE TABLE `magic` (
 `magic_id` int(11) NOT NULL,
   `magic_text` text COLLATE utf8_unicode_ci NOT NULL,
   `magic_result` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `magic`
 --
 
 INSERT INTO `magic` (`magic_id`, `magic_text`, `magic_result`) VALUES
-(1, 'This is magic card number one, a good one! Yay!', 2),
-(2, 'This is a magic card, a bad one, boo!', 1);
+(1, 'You landed the support of a big financial backer which means more money for your campaign! Overturn a district of your choice (you may choose any 3 or 5 valued district. ', 1),
+(2, 'A video against your campaign went viral, swaying many voters against you. You lose your biggest district.', 2),
+(3, 'The opposing team landed a big donation, putting you at disadvantage. You lose one of your lowest valued district and have to skip one round.', 2);
 
 -- --------------------------------------------------------
 
@@ -134,7 +163,7 @@ INSERT INTO `tweets` (`tweet_id`, `tweet_handle`, `tweet_text`, `fact_text`) VAL
 -- Indexes for table `answers`
 --
 ALTER TABLE `answers`
- ADD PRIMARY KEY (`q_id`);
+ ADD PRIMARY KEY (`a_id`);
 
 --
 -- Indexes for table `districts`
@@ -168,12 +197,12 @@ ALTER TABLE `tweets`
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
-MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `magic`
 --
 ALTER TABLE `magic`
-MODIFY `magic_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `magic_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tweets`
 --

@@ -14,7 +14,6 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <!-- Font -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600|Slabo+27px' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="css/main.css">
 
     </head>
@@ -40,10 +39,10 @@
             "question",
             "district_id"]);
         $selectedQ = rand(0, (sizeof($questions) - 1) );
-        
 
-        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 1]);
-         $tweets = $database->select("tweets", [
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => $questions[$selectedQ]["q_id"]]);
+
+        $tweets = $database->select("tweets", [
             "tweet_id",
             "tweet_handle",
             "tweet_text",
@@ -82,7 +81,7 @@
                         <h1>Hialeah</h1>
                         <p>Get this question correct and you get to overturn this district!</p>
                         <?php
-                            echo "<h4>" . $questions[rand(0, (sizeof($questions) - 1) )]["question"] . "</h4>";
+                            echo "<h4>" . $questions[$selectedQ]["question"] . "</h4>";
                         ?>
                     </div>
                     <div class="panel-body">
@@ -104,6 +103,7 @@
 
                      <div id="factContainer" class="panel panel-default fact">
                         <?php
+                            echo "<h3>" . "Did you Know?" . "</h3>";
                             echo $tweets[rand(0, (sizeof($tweets) - 1) )]["fact_text"];
                         ?>
                     </div>

@@ -40,7 +40,7 @@
             "district_id"]);
         $selectedQ = rand(0, (sizeof($questions) - 1) );
 
-        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => 1]);
+        $answers = $database->select("answers", ["answer", "correct"], ["q_id" => $questions[$selectedQ]["q_id"]]);
 
         $tweets = $database->select("tweets", [
             "tweet_id",
@@ -81,7 +81,7 @@
                         <h1>Miami Beach</h1>
                         <p>Get this question correct and you get to overturn this district!</p>
                         <?php
-                            echo "<h4>" . $questions[rand(0, (sizeof($questions) - 1) )]["question"] . "</h4>";
+                            echo "<h4>" . $questions[$selectedQ]["question"] . "</h4>";
                         ?>
                     </div>
                     <div class="panel-body">
@@ -103,6 +103,7 @@
 
                      <div id="factContainer" class="panel panel-default fact">
                         <?php
+                            echo "<h3>" . "Did you Know?" . "</h3>";
                             echo $tweets[rand(0, (sizeof($tweets) - 1) )]["fact_text"];
                         ?>
                     </div>
